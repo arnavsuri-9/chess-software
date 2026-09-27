@@ -69,7 +69,9 @@ function toRecord() {
     dateCreated: S.dateCreated,
     status: S.finished ? "completed" : "active",
     players: S.players.map(p => ({
-      id: p.id, name: p.name, rating: p.rating, unrated: !!p.unrated, seed: p.seed
+      id: p.id, name: p.name, rating: p.rating, unrated: !!p.unrated, seed: p.seed,
+      withdrawn: !!p.withdrawn, withdrawnRound: p.withdrawnRound || null,
+      joinedRound: p.joinedRound || 1
     })),
     rounds: S.roundList.map(r => ({
       number: r.number,
@@ -113,7 +115,10 @@ export function restore(rec) {
   S.schedule = rec.schedule || [];
   S.players = (rec.players || []).map(p => ({
     id: p.id, name: p.name, rating: p.rating, unrated: !!p.unrated, seed: p.seed,
-    score: 0, roundScores: [], colorHistory: [], opponentIds: [], hadBye: false
+    withdrawn: !!p.withdrawn, withdrawnRound: p.withdrawnRound || null,
+    joinedRound: p.joinedRound || 1,
+    score: 0, playedScore: 0, roundScores: [], roundScoresPlayed: [],
+    colorHistory: [], opponentIds: [], hadBye: false, hadForfeit: false
   }));
   setNextId(S.players.reduce((m, p) => Math.max(m, p.id), 0) + 1);
   S.roundList = (rec.rounds || []).map(r => ({

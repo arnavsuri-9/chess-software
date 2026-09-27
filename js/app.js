@@ -105,6 +105,7 @@ function advanceRound() {
 function showTab(t) {
   if ((t === "pairings" || t === "standings") && !S.started) t = "setup";
   if (t !== "history") S.confirmDelete = null;
+  if (t !== "setup") S.entryError = null;
   S.tab = t;
   render();
   if (t === "pairings") requestAnimationFrame(() => {

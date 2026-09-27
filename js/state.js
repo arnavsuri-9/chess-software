@@ -140,11 +140,16 @@ export function withdrawPlayer(id) {
   const rd = S.roundList[S.roundList.length - 1];
   if (rd && !rd.locked) {
     rd.boards.forEach(b => {
-      if (b.black == null || b.result) return;     // byes stand; decided boards stand
+      if (b.black == null) return;                 // byes stand
       const isW = b.white === id, isB = b.black === id;
       if (!isW && !isB) return;
       const other = byId(isW ? b.black : b.white);
-      b.result = (other && other.withdrawn) ? "0-0F" : (isW ? "0-1F" : "1-0F");
+      const bothOut = !!(other && other.withdrawn);
+      // Opponent withdrew first and took the forfeit win; now both are out,
+      // which is a double forfeit (Rule 29H3).
+      if (bothOut && isForfeit(b.result)) { b.result = "0-0F"; return; }
+      if (b.result) return;                        // a real result stands
+      b.result = bothOut ? "0-0F" : (isW ? "0-1F" : "1-0F");
     });
   }
   recomputeStats();

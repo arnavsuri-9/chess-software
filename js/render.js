@@ -97,10 +97,14 @@ function entryForm() {
       '<button class="btn" data-act="add-player">Add player</button>' +
     "</div>" +
     (late
-      ? '<p class="hint">A player added now joins the pairing pool from <b>round ' + gate.round +
-        "</b>, and is passed over for the bye in that round. Earlier rounds count as unplayed. " +
-        '<label class="check"><input type="checkbox" id="pforfeit"> ' +
-        "Score their missed rounds as forfeit losses instead</label></p>"
+      ? (gate.round > S.rounds
+          ? '<p class="notice notice--inline">The open round is already paired, so a player added now ' +
+            "would not join until round " + gate.round + " &mdash; past the last round of this " +
+            S.rounds + "-round event. They would never be paired. Add them to a new tournament instead.</p>"
+          : '<p class="hint">A player added now joins the pairing pool from <b>round ' + gate.round +
+            "</b>, and is passed over for the bye in that round. Earlier rounds count as unplayed. " +
+            '<label class="check"><input type="checkbox" id="pforfeit"> ' +
+            "Score their missed rounds as forfeit losses instead</label></p>")
       : "");
 }
 
@@ -412,8 +416,9 @@ function swissCrosstable(rows) {
             letter = won ? "W" : "L";
             note = won ? "Won" : "Lost";
           }
-          if (!letter) {
-            cell = '<td class="xt-cell xt-cell--none" title="Not yet played">vs ' + n + "</td>";
+          if (!letter) {      // paired, no result yet — U, but still name the opponent
+            cell = '<td class="xt-cell xt-cell--none" title="Paired, not yet played">' +
+              '<b class="xt-res xt-res--U">U</b><span class="xt-opp">' + n + "</span></td>";
             return;
           }
           cell = '<td class="xt-cell" title="' + note + " against " + esc(opp ? opp.name : "") +
