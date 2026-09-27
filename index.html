@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chess Tournament Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="sheet">
+  <header class="masthead">
+    <div class="masthead__row">
+      <div class="masthead__mark" aria-hidden="true">&#9814;</div>
+      <div>
+        <p class="masthead__kicker" id="hallKicker">Set up a new event</p>
+        <h1 class="masthead__name" id="hallName">Tournament Manager</h1>
+        <dl class="facts" id="hallFacts"></dl>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tab-setup"     data-tab="setup"     aria-selected="true">Setup</button>
+      <button class="tab" role="tab" id="tab-standings" data-tab="standings" aria-selected="false" disabled>Standings</button>
+      <button class="tab" role="tab" id="tab-pairings"  data-tab="pairings"  aria-selected="false" disabled>Pairings</button>
+      <button class="tab" role="tab" id="tab-history"   data-tab="history"   aria-selected="false">History</button>
+    </nav>
+  </header>
+  <main id="view"></main>
+</div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

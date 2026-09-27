@@ -1,0 +1,56 @@
+/* ============================================================
+   Design tokens — pulled from real tournament materials:
+   parchment bulletin paper, board felt, brass placards, and
+   the black/white contrast of the pieces themselves.
+   ============================================================ */
+:root {
+  /* --- surfaces --- */
+  --parchment:   #EDE7DA;   /* the hall: warm paper ground        */
+  --surface:     #FAF7F0;   /* the sheet laid on it               */
+  --surface-sunk:#F2ECE0;   /* table headers, quiet fills         */
+
+  /* --- ink --- */
+  --ink:         #2B241C;   /* warm near-black, never #000        */
+  --ink-soft:    #6B6153;   /* secondary text                     */
+  --ink-faint:   #9A9082;   /* ratings, hints, disabled           */
+
+  /* --- accents, each with exactly one job --- */
+  --felt:        #2F4C39;   /* board green: primary action, rules */
+  --felt-deep:   #23392B;
+  --felt-wash:   #E2E7E0;
+  --brass:       #B08D4F;   /* rationed: leader + active + focus  */
+  --brass-wash:  #F0E6D2;
+
+  /* --- the pieces: used only in the pairing row --- */
+  --piece-white: #FAF7F0;
+  --piece-black: #33302B;
+  --piece-black-ink:   #E8E1D4;
+  --piece-black-faint: #9C9384;
+
+  --flag:        #A8501F;   /* replay / needs attention           */
+  --flag-wash:   #F6E7DC;
+
+  /* --- hairlines: the whole structural vocabulary --- */
+  --rule:        #D8CFBE;
+  --rule-soft:   #E6DFD1;
+  --rule-strong: #BCB09A;
+
+  /* --- type --- */
+  --serif: "Lora", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:  ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --t-hall:   1.75rem;   /* tournament name       */
+  --t-head:   1.0625rem; /* section headers       */
+  --t-board:  1.5rem;    /* board numbers         */
+  --t-body:   0.875rem;
+  --t-small:  0.8125rem;
+  --t-fine:   0.75rem;
+
+  /* --- spacing --- */
+  --gap-xs: 4px;  --gap-sm: 8px;  --gap-md: 14px;
+  --gap-lg: 22px; --gap-xl: 34px;
+
+  /* printed sheet, not an app card */
+  --radius: 2px;
+}
